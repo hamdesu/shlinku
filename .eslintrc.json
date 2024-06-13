@@ -9,6 +9,7 @@
     "tsconfig.json"
   ],
   "rules": {
+    "func-names": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
@@ -25,7 +26,7 @@
         "tsx": "never"
       }
     ],
-    "import/no-extraneous-dependencies": ["error", {"peerDependencies": true}],
+    "import/no-extraneous-dependencies": "off",
     "simple-import-sort/exports": "error",
     "simple-import-sort/imports": "error",
     "prettier/prettier": [
@@ -49,5 +50,8 @@
     "ecmaFeatures": {
       "tsx": true
     }
+  },
+  "globals": {
+    "globalThis": "readonly"
   }
 }
