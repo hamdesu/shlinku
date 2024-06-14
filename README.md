@@ -1,2 +1,2 @@
-# shlinku
+# linkoe
 nextjs app
