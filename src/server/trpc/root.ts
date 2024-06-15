@@ -1,5 +1,5 @@
+import { createCallerFactory, createTRPCRouter } from './api/trpc';
 import { userRouter } from './routers/user';
-import { createCallerFactory, createTRPCRouter } from './trpc';
 
 export const appRouter = createTRPCRouter({
   user: userRouter,

@@ -1,8 +1,7 @@
-import { type CreateNextContextOptions } from '@trpc/server/adapters/next';
 import { type Session } from 'next-auth';
 
-import { auth } from '../../api/auth';
-import { db } from '../../api/db';
+import { auth } from '@/src/shared/api/auth';
+import { db } from '@/src/shared/api/db';
 
 /**
  * CONTEXT
@@ -16,7 +15,7 @@ interface CreateContextOptions {
   session: Session | null;
 }
 
-export const createInnerTRPCContext = (opts: CreateContextOptions) => {
+const createInnerTRPCContext = (opts: CreateContextOptions) => {
   return {
     session: opts.session,
     db,
@@ -41,11 +40,8 @@ export const createInnerTRPCContext = (opts: CreateContextOptions) => {
  * @see https://trpc.io/docs/context
  */
 
-export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
-
-  // Get the session from the server using the getServerSession wrapper function
-  const session = await auth(req, res);
+export const createTRPCContext = async () => {
+  const session = await auth();
 
   return createInnerTRPCContext({
     session,

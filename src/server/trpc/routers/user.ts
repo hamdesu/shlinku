@@ -1,8 +1,8 @@
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 
-import { authProcedure, publicProcedure } from '../procedure';
-import { createTRPCRouter } from '../trpc';
+import { publicProcedure } from '../api/procedure';
+import { createTRPCRouter } from '../api/trpc';
 
 export const userRouter = createTRPCRouter({
   register: publicProcedure
@@ -28,7 +28,7 @@ export const userRouter = createTRPCRouter({
       const createUser = await ctx.db.user.create({ data: input });
       return createUser;
     }),
-  getUserList: authProcedure.query(async ({ ctx }) => {
+  getUserList: publicProcedure.query(async ({ ctx }) => {
     const userList = await ctx.db.user.findMany();
     return userList;
   }),
